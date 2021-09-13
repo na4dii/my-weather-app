@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather App</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/7a7f5c43b3.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+
+  <body>
+    <video
+      id="background-video"
+      autoplay
+      loop
+      muted
+      poster="images/cloudysky.jpg"
+      src="videos/Cloudysky.mp4"
+    ></video>
+
+    <div class="container">
+      <div class="weather-app">
+        <div class="row weather-header">
+          <div class="col-7 search-bar">
+            <nav class="navbar-9 fixed-left navbar-light">
+              <form class="d-flex" id="citySearchForm">
+                <input
+                  class="form-control me-2"
+                  id="city-input"
+                  type="search"
+                  placeholder="Search City"
+                  aria-label="Search"
+                  autocomplete="off"
+                  rounded-pill
+                />
+                <button class="btn search-button rounded-pill" type="submit">
+                  <i class="fas fa-search spyglass-icon"></i>
+                </button>
+              </form>
+            </nav>
+          </div>
+
+          <div class="col-1 search">
+            <button class="btn location-button rounded-pill" type="submit">
+              <i class="fas fa-map-marker-alt location-icon"></i>
+            </button>
+          </div>
+          <div class="col-4 dateTime">
+            <ul>
+              <li class="currentDate"></li>
+              <li class="currentTime"></li>
+            </ul>
+          </div>
+        </div>
+
+        <h1>Current Weather</h1>
+
+        <div class="link-container">
+          <a href="#" class="card-link">12pm</a>
+          <a href="#" class="card-link">2pm</a>
+          <a href="#" class="card-link">4pm</a>
+          <a href="#" class="card-link">6pm</a>
+        </div>
+
+        <div class="row">
+          <div class="col-5 card today-details">
+            <div class="card-header current-temp">°F</div>
+            <div class="card-body">
+              <p class="card-text">
+                <i class="fas fa-cloud cloud-icon"></i>
+                <br />
+                <span
+                  class="current-subhead"
+                  id="currentTempDescription"
+                ></span>
+                <br />
+                <span class="current-subhead">High</span>
+                <span class="current-degree" id="currentHigh">°F</span>
+                <br />
+                <span class="current-subhead">Low</span>
+                <span class="current-degree" id="currentLow">°F</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-8 temp-details">
+            <div class="row current-detail-descriptions">
+              <div class="col-6 temp-descriptors">
+                <i class="fas fa-cloud-rain rain-icon"></i>
+                <br />
+                <br />
+                ☔️ Precipitation:
+                <span class="temp-data" id="precipitation">%</span>
+              </div>
+              <div class="col-6 temp-descriptors">
+                <i class="fas fa-box-tissue tissue-icon"></i>
+                <br />
+                <br />
+                🤧 Pollen Count:
+                <span class="temp-data" id="pollen"></span>
+              </div>
+              <div class="col-6 temp-descriptors">
+                <i class="fab fa-hotjar fire-icon"></i>
+                <br />
+                <br />
+                🌡 Humidity:
+                <span class="temp-data" id="humidity">%</span>
+              </div>
+              <div class="col-6 temp-descriptors">
+                <i class="fas fa-wind wind-icon"></i>
+                <br />
+                <br />
+                💨 Wind:
+                <span class="temp-data" id="wind">mph</span>
+              </div>
+              <div class="col-6 sunrise-set">
+                🌅 Sunrise
+                <span class="temp-data" id="sunrise">am</span>
+              </div>
+              <div class="col-6 sunrise-set">
+                🌆 Sunset
+                <span class="temp-data" id="sunset">pm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2>5 Day Forecast</h2>
+        <hr />
+
+        <div class="row five-day-forecast">
+          <div class="col-2 card forecast-details">
+            <div class="card-body">
+              <h5 class="card-title">Monday</h5>
+              <ul class="forecast-info">
+                <li>
+                  High:
+                  <br />
+                  <span class="temp" id="oneHigh">90°F</span>
+                </li>
+                <li>
+                  Low: <br />
+                  <span class="temp" id="oneLow">90°F</span>
+                </li>
+                <li>
+                  <span class="weather-img">⛅️</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-2 card forecast-details">
+            <div class="card-body">
+              <h5 class="card-title">Tuesday</h5>
+              <ul class="forecast-info">
+                <li>
+                  High:
+                  <br />
+                  <span class="temp" id="twoHigh">90°F</span>
+                </li>
+                <li>
+                  Low: <br />
+                  <span class="temp" id="twoLow">90°F</span>
+                </li>
+                <li>
+                  <span class="weather-img">⛅️</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-2 card forecast-details">
+            <div class="card-body">
+              <h5 class="card-title">Wednesday</h5>
+              <ul class="forecast-info">
+                <li>
+                  High:
+                  <br />
+                  <span class="temp" id="threeHigh">90°F</span>
+                </li>
+                <li>
+                  Low: <br />
+                  <span class="temp" id="threeLow">90°F</span>
+                </li>
+                <li>
+                  <span class="weather-img">⛅️</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-2 card forecast-details">
+            <div class="card-body">
+              <h5 class="card-title">Thursday</h5>
+              <ul class="forecast-info">
+                <li>
+                  High:
+                  <br />
+                  <span class="temp" id="fourHigh">90°F</span>
+                </li>
+                <li>
+                  Low: <br />
+                  <span class="temp" id="fourLow">90°F</span>
+                </li>
+                <li>
+                  <span class="weather-img">⛅️</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-2 card forecast-details">
+            <div class="card-body">
+              <h5 class="card-title">Friday</h5>
+              <ul class="forecast-info">
+                <li>
+                  High:
+                  <br />
+                  <span class="temp" id="fiveHigh">90°F</span>
+                </li>
+                <li>
+                  Low: <br />
+                  <span class="temp" id="fiveLow">90°F</span>
+                </li>
+                <li>
+                  <span class="weather-img">⛅️</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="src/app.js"></script>
+  </body>
+</html>
