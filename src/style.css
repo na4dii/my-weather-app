@@ -206,3 +206,7 @@ ul.forecast-info {
   margin: 0 auto;
   padding: 0;
 }
+
+.signature {
+  font-family: cursive;
+}
