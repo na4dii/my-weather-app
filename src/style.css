@@ -207,8 +207,11 @@ ul.forecast-info {
   padding: 0;
 }
 
+small {
+  color: #fff;
+}
+
 .signature {
   font-family: cursive;
-  color: #fff;
   text-decoration: solid;
 }
