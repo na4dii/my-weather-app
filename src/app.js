@@ -40,22 +40,16 @@ let timeNow = document.querySelector(".currentTime");
 todaysDate.innerHTML = `${dayOfWeek}, ${month} ${day}`;
 
 function formatDate(date) {
-  let timeUnit = null;
 
   if (hours < 10) {
     hours = `0${hours}`;
   }
-  if (hours >= 12) {
-    timeUnit = "pm";
-  }
-  if (hours < 12) {
-    timeUnit = "am";
-  }
+
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
 
-  return `${hours}:${minutes} ${timeUnit}`;
+  return `${hours}:${minutes}`;
 }
 
 timeNow.innerHTML = formatDate(now);
