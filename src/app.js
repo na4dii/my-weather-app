@@ -71,9 +71,9 @@ function showWeather(response) {
   let sunsetElement = document.querySelector("#sunset");
 
   h1.innerHTML = `Current Weather in ${response.data.name}`;
-  currentTemperatureElement.innerHTML = `${temperature}°F`;
-  currentHighElement.innerHTML = `${high}°F`;
-  currentLowElement.innerHTML = `${low}°F`;
+  currentTemperatureElement.innerHTML = `${temperature}°`;
+  currentHighElement.innerHTML = `${high}°`;
+  currentLowElement.innerHTML = `${low}°`;
   currentDescription.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = `${response.data.main.humidity}%`;
   windElement.innerHTML = `${wind} mph`;
@@ -83,8 +83,6 @@ function showWeather(response) {
   sunsetElement.innerHTML = new Date(
     response.data.sys.sunset * 1000
   ).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-
-  
 }
 
 function currentLocation(position) {
