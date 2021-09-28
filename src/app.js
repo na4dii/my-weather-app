@@ -30,20 +30,18 @@ let months = [
   "December",
 ];
 let month = months[now.getMonth()];
-
 let day = now.getDate();
-let hours = now.getHours();
-let minutes = now.getMinutes();
-
 let todaysDate = document.querySelector(".currentDate");
-let timeNow = document.querySelector(".currentTime");
 
 todaysDate.innerHTML = `${dayOfWeek}, ${month} ${day}`;
 
-function formatDate(date) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
   }
+  let minutes = date.getMinutes();
 
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -52,15 +50,12 @@ function formatDate(date) {
   return `${hours}:${minutes}`;
 }
 
-timeNow.innerHTML = formatDate(now);
-
-let currentTemperatureElement = document.querySelector(".current-temp");
-
 function showWeather(response) {
   let temperature = Math.round(`${response.data.main.temp}`);
   let high = Math.round(`${response.data.main.temp_max}`);
   let low = Math.round(`${response.data.main.temp_min}`);
   let h1 = document.querySelector("h1");
+  let currentTemperatureElement = document.querySelector(".current-temp");
   let currentHighElement = document.querySelector("#currentHigh");
   let currentLowElement = document.querySelector("#currentLow");
   let currentDescription = document.querySelector("#currentTempDescription");
@@ -69,7 +64,9 @@ function showWeather(response) {
   let wind = Math.round(response.data.wind.speed);
   let sunriseElement = document.querySelector("#sunrise");
   let sunsetElement = document.querySelector("#sunset");
+  let timeElement = document.querySelector(".currentTime");
 
+  timeElement.innerHTML = formatDate(response.data.dt * 1000);
   h1.innerHTML = `Current Weather in ${response.data.name}`;
   currentTemperatureElement.innerHTML = `${temperature}°`;
   currentHighElement.innerHTML = `${high}°`;
@@ -77,12 +74,9 @@ function showWeather(response) {
   currentDescription.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = `${response.data.main.humidity}%`;
   windElement.innerHTML = `${wind} mph`;
-  sunriseElement.innerHTML = new Date(
-    response.data.sys.sunrise * 1000
-  ).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-  sunsetElement.innerHTML = new Date(
-    response.data.sys.sunset * 1000
-  ).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  sunriseElement.innerHTML =
+    formatDate(response.data.sys.sunrise * 1000) + "am";
+  sunsetElement.innerHTML = formatDate(response.data.sys.sunset * 1000) + "pm";
 }
 
 function currentLocation(position) {
