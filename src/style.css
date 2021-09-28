@@ -1,9 +1,10 @@
 .weather-app {
   border-radius: 4px;
   background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
-  max-width: 970px;
+  max-width: 998px;
   box-shadow: 9px 9px 20px #000;
-  border-radius: 12px;
+  padding: 20px;
+  margin: 30px auto;
 }
 
 body {
@@ -194,7 +195,7 @@ ul.forecast-info {
 }
 
 small {
-  color: #fff;
+  color: #4690cc;
 }
 
 .signature {
