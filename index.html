@@ -33,208 +33,206 @@
     ></video>
 
     <div class="container">
-      <div class="weather-app-wrapper">
-        <div class="weather-app">
-          <div class="row weather-header">
-            <div class="col-7 search-bar">
-              <nav class="navbar-9 fixed-left navbar-light">
-                <form class="d-flex" id="citySearchForm">
-                  <input
-                    class="form-control me-2"
-                    id="city-input"
-                    type="search"
-                    placeholder="Search City"
-                    aria-label="Search"
-                    autocomplete="off"
-                    rounded-pill
-                  />
-                  <button class="btn search-button rounded-pill" type="submit">
-                    <i class="fas fa-search spyglass-icon"></i>
-                  </button>
-                </form>
-              </nav>
-            </div>
+      <div class="weather-app">
+        <div class="row weather-header">
+          <div class="col-7 search-bar">
+            <nav class="navbar-9 fixed-left navbar-light">
+              <form class="d-flex" id="citySearchForm">
+                <input
+                  class="form-control me-2"
+                  id="city-input"
+                  type="search"
+                  placeholder="Search City"
+                  aria-label="Search"
+                  autocomplete="off"
+                  rounded-pill
+                />
+                <button class="btn search-button rounded-pill" type="submit">
+                  <i class="fas fa-search spyglass-icon"></i>
+                </button>
+              </form>
+            </nav>
+          </div>
 
-            <div class="col-1 search">
-              <button class="btn location-button rounded-pill" type="submit">
-                <i class="fas fa-map-marker-alt location-icon"></i>
-              </button>
+          <div class="col-1 search">
+            <button class="btn location-button rounded-pill" type="submit">
+              <i class="fas fa-map-marker-alt location-icon"></i>
+            </button>
+          </div>
+          <div class="col-4 dateTime">
+            <ul>
+              <li class="currentDate"></li>
+              <li class="currentTime"></li>
+            </ul>
+          </div>
+        </div>
+
+        <h1>Current Weather</h1>
+
+        <div class="row">
+          <div class="col-5 card today-details">
+            <div class="card-header current-temp">°F</div>
+            <div class="card-body">
+              <p class="card-text">
+                <i class="fas fa-cloud cloud-icon"></i>
+                <br />
+                <span
+                  class="current-subhead"
+                  id="currentTempDescription"
+                ></span>
+                <br />
+                <span class="current-subhead">Current High:</span>
+                <span class="current-degree" id="currentHigh">°F</span>
+                <br />
+                <span class="current-subhead">Current Low:</span>
+                <span class="current-degree" id="currentLow">°F</span>
+              </p>
             </div>
-            <div class="col-4 dateTime">
-              <ul>
-                <li class="currentDate"></li>
-                <li class="currentTime"></li>
+          </div>
+
+          <div class="col-8 temp-details">
+            <div class="row current-detail-descriptions">
+              <div class="col-6 temp-descriptors">
+                <i class="fas fa-cloud-rain rain-icon"></i>
+                <br />
+                <br />
+                ☔️ Precipitation:
+                <span class="temp-data" id="precipitation">%</span>
+              </div>
+              <div class="col-6 temp-descriptors">
+                <i class="fas fa-box-tissue tissue-icon"></i>
+                <br />
+                <br />
+                🤧 Pollen Count:
+                <span class="temp-data" id="pollen"></span>
+              </div>
+              <div class="col-6 temp-descriptors">
+                <i class="fab fa-hotjar fire-icon"></i>
+                <br />
+                <br />
+                🌡 Humidity:
+                <span class="temp-data" id="humidity">%</span>
+              </div>
+              <div class="col-6 temp-descriptors">
+                <i class="fas fa-wind wind-icon"></i>
+                <br />
+                <br />
+                💨 Wind:
+                <span class="temp-data" id="wind">mph</span>
+              </div>
+              <div class="col-6 sunrise-set">
+                🌅 Sunrise
+                <span class="temp-data" id="sunrise">am</span>
+              </div>
+              <div class="col-6 sunrise-set">
+                🌆 Sunset
+                <span class="temp-data" id="sunset">pm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2>5 Day Forecast</h2>
+        <hr />
+
+        <div class="row five-day-forecast">
+          <div class="col-2 card forecast-details">
+            <div class="card-body">
+              <h5 class="card-title day-filler">Monday</h5>
+              <ul class="forecast-info">
+                <li>
+                  High:
+                  <br />
+                  <span class="temp oneHigh">90°F</span>
+                </li>
+                <li>
+                  Low: <br />
+                  <span class="temp oneLow">90°F</span>
+                </li>
+                <li>
+                  <span class="weather-img">⛅️</span>
+                </li>
               </ul>
             </div>
           </div>
 
-          <h1>Current Weather</h1>
-
-          <div class="row">
-            <div class="col-5 card today-details">
-              <div class="card-header current-temp">°F</div>
-              <div class="card-body">
-                <p class="card-text">
-                  <i class="fas fa-cloud cloud-icon"></i>
+          <div class="col-2 card forecast-details">
+            <div class="card-body">
+              <h5 class="card-title day-filler">Tuesday</h5>
+              <ul class="forecast-info">
+                <li>
+                  High:
                   <br />
-                  <span
-                    class="current-subhead"
-                    id="currentTempDescription"
-                  ></span>
-                  <br />
-                  <span class="current-subhead">Current High:</span>
-                  <span class="current-degree" id="currentHigh">°F</span>
-                  <br />
-                  <span class="current-subhead">Current Low:</span>
-                  <span class="current-degree" id="currentLow">°F</span>
-                </p>
-              </div>
-            </div>
-
-            <div class="col-8 temp-details">
-              <div class="row current-detail-descriptions">
-                <div class="col-6 temp-descriptors">
-                  <i class="fas fa-cloud-rain rain-icon"></i>
-                  <br />
-                  <br />
-                  ☔️ Precipitation:
-                  <span class="temp-data" id="precipitation">%</span>
-                </div>
-                <div class="col-6 temp-descriptors">
-                  <i class="fas fa-box-tissue tissue-icon"></i>
-                  <br />
-                  <br />
-                  🤧 Pollen Count:
-                  <span class="temp-data" id="pollen"></span>
-                </div>
-                <div class="col-6 temp-descriptors">
-                  <i class="fab fa-hotjar fire-icon"></i>
-                  <br />
-                  <br />
-                  🌡 Humidity:
-                  <span class="temp-data" id="humidity">%</span>
-                </div>
-                <div class="col-6 temp-descriptors">
-                  <i class="fas fa-wind wind-icon"></i>
-                  <br />
-                  <br />
-                  💨 Wind:
-                  <span class="temp-data" id="wind">mph</span>
-                </div>
-                <div class="col-6 sunrise-set">
-                  🌅 Sunrise
-                  <span class="temp-data" id="sunrise">am</span>
-                </div>
-                <div class="col-6 sunrise-set">
-                  🌆 Sunset
-                  <span class="temp-data" id="sunset">pm</span>
-                </div>
-              </div>
+                  <span class="temp oneHigh">90°F</span>
+                </li>
+                <li>
+                  Low: <br />
+                  <span class="temp oneLow">90°F</span>
+                </li>
+                <li>
+                  <span class="weather-img">⛅️</span>
+                </li>
+              </ul>
             </div>
           </div>
 
-          <h2>5 Day Forecast</h2>
-          <hr />
-
-          <div class="row five-day-forecast">
-            <div class="col-2 card forecast-details">
-              <div class="card-body">
-                <h5 class="card-title day-filler">Monday</h5>
-                <ul class="forecast-info">
-                  <li>
-                    High:
-                    <br />
-                    <span class="temp oneHigh">90°F</span>
-                  </li>
-                  <li>
-                    Low: <br />
-                    <span class="temp oneLow">90°F</span>
-                  </li>
-                  <li>
-                    <span class="weather-img">⛅️</span>
-                  </li>
-                </ul>
-              </div>
+          <div class="col-2 card forecast-details">
+            <div class="card-body">
+              <h5 class="card-title day-filler">Wednesday</h5>
+              <ul class="forecast-info">
+                <li>
+                  High:
+                  <br />
+                  <span class="temp oneHigh">90°F</span>
+                </li>
+                <li>
+                  Low: <br />
+                  <span class="temp oneLow">90°F</span>
+                </li>
+                <li>
+                  <span class="weather-img">⛅️</span>
+                </li>
+              </ul>
             </div>
+          </div>
 
-            <div class="col-2 card forecast-details">
-              <div class="card-body">
-                <h5 class="card-title day-filler">Tuesday</h5>
-                <ul class="forecast-info">
-                  <li>
-                    High:
-                    <br />
-                    <span class="temp oneHigh">90°F</span>
-                  </li>
-                  <li>
-                    Low: <br />
-                    <span class="temp oneLow">90°F</span>
-                  </li>
-                  <li>
-                    <span class="weather-img">⛅️</span>
-                  </li>
-                </ul>
-              </div>
+          <div class="col-2 card forecast-details">
+            <div class="card-body">
+              <h5 class="card-title day-filler">Thursday</h5>
+              <ul class="forecast-info">
+                <li>
+                  High:
+                  <br />
+                  <span class="temp oneHigh">90°F</span>
+                </li>
+                <li>
+                  Low: <br />
+                  <span class="temp oneLow">90°F</span>
+                </li>
+                <li>
+                  <span class="weather-img">⛅️</span>
+                </li>
+              </ul>
             </div>
+          </div>
 
-            <div class="col-2 card forecast-details">
-              <div class="card-body">
-                <h5 class="card-title day-filler">Wednesday</h5>
-                <ul class="forecast-info">
-                  <li>
-                    High:
-                    <br />
-                    <span class="temp oneHigh">90°F</span>
-                  </li>
-                  <li>
-                    Low: <br />
-                    <span class="temp oneLow">90°F</span>
-                  </li>
-                  <li>
-                    <span class="weather-img">⛅️</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-2 card forecast-details">
-              <div class="card-body">
-                <h5 class="card-title day-filler">Thursday</h5>
-                <ul class="forecast-info">
-                  <li>
-                    High:
-                    <br />
-                    <span class="temp oneHigh">90°F</span>
-                  </li>
-                  <li>
-                    Low: <br />
-                    <span class="temp oneLow">90°F</span>
-                  </li>
-                  <li>
-                    <span class="weather-img">⛅️</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-2 card forecast-details">
-              <div class="card-body">
-                <h5 class="card-title day-filler">Friday</h5>
-                <ul class="forecast-info">
-                  <li>
-                    High:
-                    <br />
-                    <span class="temp oneHigh">90°F</span>
-                  </li>
-                  <li>
-                    Low: <br />
-                    <span class="temp oneLow">90°F</span>
-                  </li>
-                  <li>
-                    <span class="weather-img">⛅️</span>
-                  </li>
-                </ul>
-              </div>
+          <div class="col-2 card forecast-details">
+            <div class="card-body">
+              <h5 class="card-title day-filler">Friday</h5>
+              <ul class="forecast-info">
+                <li>
+                  High:
+                  <br />
+                  <span class="temp oneHigh">90°F</span>
+                </li>
+                <li>
+                  Low: <br />
+                  <span class="temp oneLow">90°F</span>
+                </li>
+                <li>
+                  <span class="weather-img">⛅️</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
