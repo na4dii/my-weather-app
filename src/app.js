@@ -1,5 +1,6 @@
 let apiKey = "66fbe743ffda6d29ce514fb34af10af8";
 let apiMain = `https://api.openweathermap.org/data/2.5/weather?`;
+let apiForecast = "api.openweathermap.org/data/2.5/forecast?q=";
 
 let now = new Date();
 
@@ -40,7 +41,6 @@ let timeNow = document.querySelector(".currentTime");
 todaysDate.innerHTML = `${dayOfWeek}, ${month} ${day}`;
 
 function formatDate(date) {
-
   if (hours < 10) {
     hours = `0${hours}`;
   }
@@ -83,6 +83,8 @@ function showWeather(response) {
   sunsetElement.innerHTML = new Date(
     response.data.sys.sunset * 1000
   ).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+  
 }
 
 function currentLocation(position) {
