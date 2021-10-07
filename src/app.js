@@ -38,9 +38,11 @@ todaysDate.innerHTML = `${dayOfWeek}, ${month} ${day}`;
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
+
   if (hours < 10) {
     hours = `0${hours}`;
   }
+
   let minutes = date.getMinutes();
 
   if (minutes < 10) {
@@ -65,6 +67,7 @@ function showWeather(response) {
   let sunriseElement = document.querySelector("#sunrise");
   let sunsetElement = document.querySelector("#sunset");
   let timeElement = document.querySelector(".currentTime");
+  let iconElement = document.querySelector(".weather-icon");
 
   timeElement.innerHTML = formatDate(response.data.dt * 1000);
   h1.innerHTML = `Current Weather in ${response.data.name}`;
@@ -74,9 +77,13 @@ function showWeather(response) {
   currentDescription.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = `${response.data.main.humidity}%`;
   windElement.innerHTML = `${wind} mph`;
-  sunriseElement.innerHTML =
-    formatDate(response.data.sys.sunrise * 1000) + "am";
-  sunsetElement.innerHTML = formatDate(response.data.sys.sunset * 1000) + "pm";
+  sunriseElement.innerHTML = formatDate(response.data.sys.sunrise * 1000);
+  sunsetElement.innerHTML = formatDate(response.data.sys.sunset * 1000);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function currentLocation(position) {

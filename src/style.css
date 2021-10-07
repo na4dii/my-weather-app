@@ -1,10 +1,14 @@
+.container {
+  padding: 0;
+}
+
 .weather-app {
   border-radius: 6px;
   background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
   max-width: 1020px;
   min-width: 515px;
   box-shadow: 9px 9px 20px #000;
-  padding: 20px;
+
   margin: 30px auto;
   border: 1px solid #5b85e5;
 }
@@ -32,7 +36,7 @@ body {
 }
 
 div.weather-header {
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 }
 
 #metric-fahrenheit {
@@ -64,14 +68,13 @@ h2 {
 
 h1 {
   width: 100%;
-  margin-bottom: 20px;
   padding: 10px;
   text-decoration: underline;
   font-size: 68px;
 }
 
 h2 {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 div.search-bar,
@@ -153,7 +156,7 @@ li {
   border-radius: 8px;
   margin-bottom: 20px;
   width: 10rem;
-  margin-left: 30px;
+  margin-left: 25px;
   box-shadow: 9px 9px 20px #000;
 }
 
@@ -166,7 +169,6 @@ li {
   font-size: 20px;
 }
 
-.cloud-icon,
 .rain-icon,
 .tissue-icon,
 .fire-icon,
