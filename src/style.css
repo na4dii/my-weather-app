@@ -78,7 +78,6 @@ h2 {
 }
 
 div.search-bar,
-.units,
 .dateTime,
 .search {
   text-align: center;
@@ -110,11 +109,22 @@ li {
 
 .current-temp {
   font-size: 50px;
-  font-weight: 900;
   background: none;
   border-bottom: none;
   padding: 0;
   margin: 0;
+}
+
+span.units {
+  font-size: 20px;
+  position: relative;
+  top: -18px;
+}
+
+.current-temp .active {
+  color: #fff;
+  cursor: default;
+  text-decoration: none;
 }
 
 .today-details .card-body-header {

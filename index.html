@@ -71,7 +71,14 @@
 
         <div class="row">
           <div class="col-5 card today-details">
-            <div class="card-header current-temp">°F | °C</div>
+            <div class="card-header current-temp">
+              <strong id="temperature"></strong
+              ><span class="units"
+                ><a href="#" id="fahrenheit-link" class="active">°F</a> |
+                <a href="#" id="celsius-link">°C</a></span
+              >
+            </div>
+
             <div class="card-body-header">
               <p class="card-text">
                 <img
@@ -86,10 +93,10 @@
                 ></span>
                 <br />
                 <span class="current-subhead">Current High:</span>
-                <span class="current-degree" id="currentHigh">°</span>
+                <span class="current-degree" id="currentHigh"></span>
                 <br />
                 <span class="current-subhead">Current Low:</span>
-                <span class="current-degree" id="currentLow">°</span>
+                <span class="current-degree" id="currentLow"></span>
               </p>
             </div>
           </div>

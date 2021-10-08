@@ -53,30 +53,30 @@ function formatDate(timestamp) {
 }
 
 function showWeather(response) {
-  let temperature = Math.round(`${response.data.main.temp}`);
-  let high = Math.round(`${response.data.main.temp_max}`);
-  let low = Math.round(`${response.data.main.temp_min}`);
   let h1 = document.querySelector("h1");
-  let currentTemperatureElement = document.querySelector(".current-temp");
+  let currentTemperatureElement = document.querySelector("#temperature");
   let currentHighElement = document.querySelector("#currentHigh");
   let currentLowElement = document.querySelector("#currentLow");
   let currentDescription = document.querySelector("#currentTempDescription");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
-  let wind = Math.round(response.data.wind.speed);
   let sunriseElement = document.querySelector("#sunrise");
   let sunsetElement = document.querySelector("#sunset");
   let timeElement = document.querySelector(".currentTime");
   let iconElement = document.querySelector(".weather-icon");
 
+  fahrenheitTemp = response.data.main.temp;
+  fahrenheitTempHigh = response.data.main.temp_max;
+  fahrenheitTempLow = response.data.main.temp_min;
+
   timeElement.innerHTML = formatDate(response.data.dt * 1000);
   h1.innerHTML = `Current Weather in ${response.data.name}`;
-  currentTemperatureElement.innerHTML = `${temperature}°`;
-  currentHighElement.innerHTML = `${high}°`;
-  currentLowElement.innerHTML = `${low}°`;
+  currentTemperatureElement.innerHTML = Math.round(fahrenheitTemp);
+  currentHighElement.innerHTML = Math.round(fahrenheitTempHigh) + "°";
+  currentLowElement.innerHTML = Math.round(fahrenheitTempLow) + "°";
   currentDescription.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = `${response.data.main.humidity}%`;
-  windElement.innerHTML = `${wind} mph`;
+  windElement.innerHTML = Math.round(response.data.wind.speed) + "mph";
   sunriseElement.innerHTML = formatDate(response.data.sys.sunrise * 1000);
   sunsetElement.innerHTML = formatDate(response.data.sys.sunset * 1000);
   iconElement.setAttribute(
@@ -116,10 +116,48 @@ function handleSubmit(event) {
   searchCity(city);
 }
 
+function displayCelsiusTemp(event) {
+  event.preventDefault();
+  let currentTemperatureElement = document.querySelector("#temperature");
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  let currentHighElement = document.querySelector("#currentHigh");
+  let currentLowElement = document.querySelector("#currentLow");
+  let celsiusTemp = Math.round((fahrenheitTemp - 32) * (5 / 9));
+  let celsiusTempHigh = Math.round((fahrenheitTempHigh - 32) * (5 / 9));
+  let celsiusTempLow = Math.round((fahrenheitTempLow - 32) * (5 / 9));
+
+  currentTemperatureElement.innerHTML = celsiusTemp;
+  currentHighElement.innerHTML = celsiusTempHigh + "°";
+  currentLowElement.innerHTML = celsiusTempLow + "°";
+}
+
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+  let currentTemperatureElement = document.querySelector("#temperature");
+  fahrenheitLink.classList.add("active");
+  celsiusLink.classList.remove("active");
+  let currentHighElement = document.querySelector("#currentHigh");
+  let currentLowElement = document.querySelector("#currentLow");
+  currentTemperatureElement.innerHTML = Math.round(fahrenheitTemp);
+  currentHighElement.innerHTML = Math.round(fahrenheitTempHigh) + "°";
+  currentLowElement.innerHTML = Math.round(fahrenheitTempLow) + "°";
+}
+
+let fahrenheitTemp = null;
+let fahrenheitTempHigh = null;
+let fahrenheitTempLow = null;
+
 let searchForm = document.querySelector("#citySearchForm");
 searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationButton = document.querySelector(".location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemp);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
 searchCity("Philadelphia");
