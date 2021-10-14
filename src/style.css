@@ -170,7 +170,8 @@ span.units {
   box-shadow: 9px 9px 20px #000;
 }
 
-.temp {
+.forecast-temp-high,
+.forecast-temp-low {
   font-size: 14px;
   color: #fff;
 }
@@ -185,10 +186,6 @@ span.units {
 .wind-icon {
   font-size: 60px;
   color: #fff;
-}
-
-.weather-img {
-  font-size: 50px;
 }
 
 .temp-descriptors {
