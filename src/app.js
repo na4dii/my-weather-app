@@ -52,6 +52,39 @@ function formatDate(timestamp) {
   return `${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  
+  let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday"];
+  
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col-2 card forecast-details">
+            <div class="card-body">
+              <h5 class="card-title day-filler">${day}</h5>
+              <ul class="forecast-info">
+                <li>
+                  <img
+                  src="https://openweathermap.org/img/wn/04d@2x.png"
+                  alt=""
+                  class="weather-img"
+                />
+                  <li>High: <span class="forecast-temp-high">90°</span></li>
+                  <li>Low: <span class="forecast-temp-low">90°</span></li>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showWeather(response) {
   let h1 = document.querySelector("h1");
   let currentTemperatureElement = document.querySelector("#temperature");
@@ -161,3 +194,4 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
 searchCity("Philadelphia");
+displayForecast();
