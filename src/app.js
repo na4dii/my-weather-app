@@ -91,19 +91,21 @@ function displayForecast(response) {
                     forecastDay.weather[0].icon
                   }@2x.png"
                   alt=""
-                  class="weather-img"
-                />
-                  <li>High: <span class="forecast-temp-high">${Math.round(
+                  class="weather-icon"
+                /></li>
+                <li><span class="forecast-description">${
+                  forecastDay.weather[0].description
+                }</span></li>
+                <br />
+                  <li><strong>High: </strong><span class="forecast-temp-high">${Math.round(
                     forecastDay.temp.max
                   )}°</span></li>
-                  <li>Low: <span class="forecast-temp-low">${Math.round(
+                  <li><strong>Low: </strong><span class="forecast-temp-low">${Math.round(
                     forecastDay.temp.min
                   )}°</span></li>
-                </li>
               </ul>
             </div>
           </div>
-
         `;
     }
   });

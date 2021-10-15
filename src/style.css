@@ -131,7 +131,8 @@ span.units {
   margin-top: 0;
 }
 
-#currentTempDescription {
+#currentTempDescription,
+.forecast-description {
   text-transform: capitalize;
 }
 
@@ -171,8 +172,9 @@ span.units {
 }
 
 .forecast-temp-high,
-.forecast-temp-low {
-  font-size: 14px;
+.forecast-temp-low,
+.forecast-description {
+  font-size: 16px;
   color: #fff;
 }
 
