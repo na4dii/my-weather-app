@@ -52,35 +52,60 @@ function formatDate(timestamp) {
   return `${hours}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data);
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday"];
-
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
     <div class="col-2 card forecast-details">
             <div class="card-body">
-              <h5 class="card-title day-filler">${day}</h5>
+              <h5 class="card-title day-filler">${formatDay(
+                forecastDay.dt
+              )}</h5>
               <ul class="forecast-info">
                 <li>
                   <img
-                  src="https://openweathermap.org/img/wn/04d@2x.png"
+                  src="https://openweathermap.org/img/wn/${
+                    forecastDay.weather[0].icon
+                  }@2x.png"
                   alt=""
                   class="weather-img"
                 />
-                  <li>High: <span class="forecast-temp-high">90°</span></li>
-                  <li>Low: <span class="forecast-temp-low">90°</span></li>
+                  <li>High: <span class="forecast-temp-high">${Math.round(
+                    forecastDay.temp.max
+                  )}°</span></li>
+                  <li>Low: <span class="forecast-temp-low">${Math.round(
+                    forecastDay.temp.min
+                  )}°</span></li>
                 </li>
               </ul>
             </div>
           </div>
 
         `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -116,7 +141,7 @@ function showWeather(response) {
   currentLowElement.innerHTML = Math.round(fahrenheitTempLow) + "°";
   currentDescription.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = `${response.data.main.humidity}%`;
-  windElement.innerHTML = Math.round(response.data.wind.speed) + "mph";
+  windElement.innerHTML = Math.round(response.data.wind.speed) + " mph";
   sunriseElement.innerHTML = formatDate(response.data.sys.sunrise * 1000);
   sunsetElement.innerHTML = formatDate(response.data.sys.sunset * 1000);
   iconElement.setAttribute(
@@ -203,4 +228,3 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
 searchCity("Philadelphia");
-
