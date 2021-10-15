@@ -1,6 +1,5 @@
 let apiKey = "66fbe743ffda6d29ce514fb34af10af8";
 let apiMain = `https://api.openweathermap.org/data/2.5/weather?`;
-let apiForecast = "api.openweathermap.org/data/2.5/forecast?q=";
 
 let now = new Date();
 
@@ -30,6 +29,7 @@ let months = [
   "December",
 ];
 let month = months[now.getMonth()];
+
 let day = now.getDate();
 let todaysDate = document.querySelector(".currentDate");
 
@@ -52,11 +52,12 @@ function formatDate(timestamp) {
   return `${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
-  
+
   let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday"];
-  
+
   let forecastHTML = `<div class="row">`;
   days.forEach(function (day) {
     forecastHTML =
@@ -83,6 +84,12 @@ function displayForecast() {
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function showWeather(response) {
@@ -117,6 +124,8 @@ function showWeather(response) {
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function currentLocation(position) {
@@ -194,4 +203,4 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
 searchCity("Philadelphia");
-displayForecast();
+
