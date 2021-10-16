@@ -5,10 +5,9 @@
 .weather-app {
   border-radius: 6px;
   background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
-  max-width: 1020px;
+  max-width: 1158px;
   min-width: 515px;
   box-shadow: 9px 9px 20px #000;
-
   margin: 88px auto;
   border: 1px solid #5b85e5;
 }
@@ -163,7 +162,7 @@ span.units {
   background-color: #4690cc;
   color: #000;
   border: 2px solid #000;
-  min-width: fit-content;
+  min-width: 190px;
   border-radius: 8px;
   margin-bottom: 20px;
   width: 10rem;
@@ -182,12 +181,13 @@ span.units {
   font-size: 20px;
 }
 
-.rain-icon,
-.tissue-icon,
+.smog-icon,
+.cloud-icon,
 .fire-icon,
 .wind-icon {
   font-size: 60px;
   color: #fff;
+  padding-bottom: 20px;
 }
 
 .temp-descriptors {
@@ -209,7 +209,7 @@ span.units {
   font-weight: normal;
 }
 
-ul.forecast-info {
+ul {
   margin: 0 auto;
   padding: 0;
 }
