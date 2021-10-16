@@ -155,7 +155,9 @@ function showWeather(response) {
     response.data.sys.sunset + localOffset + response.data.timezone
   );
   cloudElement.innerHTML = `${response.data.clouds.all}%`;
-  visibleElement.innerHTML = `${Math.round(response.data.visibility * .000621)} mi`;
+  visibleElement.innerHTML = `${Math.round(
+    response.data.visibility * 0.000621
+  )} mi`;
   iconElement.setAttribute(
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
