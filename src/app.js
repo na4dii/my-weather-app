@@ -77,7 +77,7 @@ function displayForecast(response) {
 
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
-    if (index > 0 && index < 6) {
+    if (index < 5) {
       forecastHTML =
         forecastHTML +
         `
@@ -197,48 +197,10 @@ function handleSubmit(event) {
   searchCity(city);
 }
 
-function displayCelsiusTemp(event) {
-  event.preventDefault();
-  let currentTemperatureElement = document.querySelector("#temperature");
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
-  let currentHighElement = document.querySelector("#currentHigh");
-  let currentLowElement = document.querySelector("#currentLow");
-  let celsiusTemp = Math.round((fahrenheitTemp - 32) * (5 / 9));
-  let celsiusTempHigh = Math.round((fahrenheitTempHigh - 32) * (5 / 9));
-  let celsiusTempLow = Math.round((fahrenheitTempLow - 32) * (5 / 9));
-
-  currentTemperatureElement.innerHTML = celsiusTemp;
-  currentHighElement.innerHTML = celsiusTempHigh + "°";
-  currentLowElement.innerHTML = celsiusTempLow + "°";
-}
-
-function displayFahrenheitTemp(event) {
-  event.preventDefault();
-  let currentTemperatureElement = document.querySelector("#temperature");
-  fahrenheitLink.classList.add("active");
-  celsiusLink.classList.remove("active");
-  let currentHighElement = document.querySelector("#currentHigh");
-  let currentLowElement = document.querySelector("#currentLow");
-  currentTemperatureElement.innerHTML = Math.round(fahrenheitTemp);
-  currentHighElement.innerHTML = Math.round(fahrenheitTempHigh) + "°";
-  currentLowElement.innerHTML = Math.round(fahrenheitTempLow) + "°";
-}
-
-let fahrenheitTemp = null;
-let fahrenheitTempHigh = null;
-let fahrenheitTempLow = null;
-
 let searchForm = document.querySelector("#citySearchForm");
 searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationButton = document.querySelector(".location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemp);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
 searchCity("Philadelphia");
